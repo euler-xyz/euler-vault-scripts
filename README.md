@@ -41,7 +41,7 @@ git clone https://github.com/euler-xyz/euler-vault-scripts.git && cd euler-vault
 4. Ensure that you have up to date dependencies installed:
 
 ```bash
-install.sh
+./install.sh
 ```
 
 5. Compile the contracts:
