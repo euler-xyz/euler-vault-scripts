@@ -4,7 +4,7 @@ This README explains how to manage a cluster using the provided scripts.
 
 ## Overview
 
-A cluster is a collection of vaults that work together in the system. The `ManageClusterBase.s.sol` contract defined in the `evk-periphery` repository provides the base functionality for configuring and managing clusters, while specific cluster implementations (like example `Cluster.s.sol`) define the actual configuration for each cluster.
+A cluster is a collection of vaults that accept each other as collateral and have a common governor. The `ManageClusterBase.s.sol` contract defined in the `evk-periphery` repository provides the base functionality for deploying, configuring and managing clusters, while specific cluster implementations (i.e. `Cluster.s.sol`) define the actual configuration for each cluster.
 
 ## Management Process
 
@@ -14,7 +14,9 @@ Edit the specific cluster file (e.g., `Cluster.s.sol`) to set up the desired con
 
 Note that the cluster specific contracts depend on the `Addresses.s.sol` which defines the asset addresses. You might need to either expand the `AddressesEthereum` contract to include more addresses on mainnet or create a new dedicated contract for new network (i.e. `AddressesBase`) and allow the `Cluster` contract to inherit from it.
 
-The corresponding `.json` files in the scripts directory that are created when running the script are used as the deployed contracts addresses cache. They are used for further management of the cluster. They must be retained as this is how the existing contract addresses are being loaded into the cluster management script!
+If you are creating a new cluster, it's best to copy the provided `Cluster.s.sol` and start editing it from top to bottom.
+
+The corresponding `.json` files in the scripts directory that are created when running the script are used as the deployed contracts addresses cache. They are used for further management of the cluster. They must be retained as this is how the existing contract addresses are being loaded into the cluster management script hence after the cluster deployment, commit them!
 
 ## Prerequisites
 
@@ -127,3 +129,11 @@ Use the Safe UI Transaction Builder tool to create the transaction. Load the `<p
 4. Coordinate signing process with the other Safe multisig signers.
 
 5. Execute the transaction in the Safe UI.
+
+# Safety
+
+This software is experimental and is provided "as is" and "as available".
+
+No warranties are provided and no liability will be accepted for any loss incurred through the use of this codebase.
+
+Always include thorough tests when using provided software to ensure it works as intended.
