@@ -98,9 +98,9 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
         //                0               1       2       3
         //                WETH            USDC    USDT    sUSDS
         /* 0  WETH    */ [uint16(0.00e4), 0.85e4, 0.85e4, 0.00e4],
-        /* 2  USDC    */ [uint16(0.87e4), 0.00e4, 0.95e4, 0.00e4],
-        /* 3  USDT    */ [uint16(0.87e4), 0.95e4, 0.00e4, 0.00e4],
-        /* 4  sUSDS   */ [uint16(0.87e4), 0.95e4, 0.95e4, 0.00e4]
+        /* 1  USDC    */ [uint16(0.87e4), 0.00e4, 0.95e4, 0.00e4],
+        /* 2  USDT    */ [uint16(0.87e4), 0.95e4, 0.00e4, 0.00e4],
+        /* 3  sUSDS   */ [uint16(0.87e4), 0.95e4, 0.95e4, 0.00e4]
         ];
     }
 
