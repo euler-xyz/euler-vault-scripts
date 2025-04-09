@@ -18,15 +18,14 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
 
     function configureCluster() internal override {
         // define the governors here
-        cluster.oracleRoutersGovernor = getDeployer();
-        cluster.vaultsGovernor = getDeployer();
+        cluster.oracleRoutersGovernor = cluster.vaultsGovernor = 0xdD84A24eeddE63F10Ec3e928f1c8302A47538b6B;
 
         // define unit of account here
         cluster.unitOfAccount = USD;
 
         // define fee receiver here and interest fee here. 
         // if needed to be defined per asset, populate the feeReceiverOverride and interestFeeOverride mappings
-        cluster.feeReceiver = address(0);
+        cluster.feeReceiver = cluster.vaultsGovernor;
         cluster.interestFee = 0.1e4;
 
         // define max liquidation discount here. 
