@@ -11,3 +11,6 @@ docs/
 
 # Dotenv file
 .env
+
+# Temporary utils
+script/utils/
