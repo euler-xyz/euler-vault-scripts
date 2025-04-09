@@ -82,21 +82,24 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
         // node lib/evk-periphery/script/utils/calculate-irm-linear-kink.js borrow <baseIr> <kinkIr> <maxIr> <kink>
-        {/*
-            // Base=0% APY,  Kink(90%)=10.00% APY  Max=70.00% APY
-            uint256[4] memory irmUSD    = [uint256(0), uint256(399976852),  uint256(39767751304), uint256(3865470566)];
+        {
+            // Base=0% APY,  Kink(90%)=12.00% APY  Max=120.00% APY
+            uint256[4] memory irmUSD    = [uint256(0), uint256(929057149),  uint256(49811732071), uint256(3865470566)];
             
-            // Base=0% APY  Kink(85%)=2.40% APY  Max=80.00% APY
-            uint256[4] memory irmNative = [uint256(0), uint256(194425692),  uint256(41617711740), uint256(3865470566)];
+            // Base=0% APY  Kink(85%)=5.00% APY  Max=80.00% APY
+            uint256[4] memory irmETH    = [uint256(0), uint256(423504902),  uint256(26511834202), uint256(3650722201)];
 
-            // Base=0% APY  Kink(85%)=10.00% APY  Max=80.00% APY
-            uint256[4] memory irmBTC    = [uint256(0), uint256(194425692),  uint256(41617711740), uint256(3865470566)];
+            // Base=0% APY  Kink(85%)=9.00% APY  Max=90.00% APY
+            uint256[4] memory irmAVAX   = [uint256(0), uint256(748033491),  uint256(27332264717), uint256(3650722201)];
+
+            // Base=0% APY  Kink(85%)=3.50% APY  Max=80.00% APY
+            uint256[4] memory irmBTC    = [uint256(0), uint256(298608804),  uint256(27219578754), uint256(3650722201)];
 
             cluster.kinkIRMParams[USDC  ] = irmUSD;
             cluster.kinkIRMParams[USDT  ] = irmUSD;
-            cluster.kinkIRMParams[WETH  ] = irmNative;
-            cluster.kinkIRMParams[WAVAX ] = irmNative;
-            cluster.kinkIRMParams[BTCb  ] = irmBTC;*/
+            cluster.kinkIRMParams[WETH  ] = irmETH;
+            cluster.kinkIRMParams[WAVAX ] = irmAVAX;
+            cluster.kinkIRMParams[BTCb  ] = irmBTC;
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
@@ -109,8 +112,8 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
         cluster.ltvs = [
         //                0               1       2       3       4       5       6       7
         //                USDC            USDT    savUSD  WETH    WAVAX   ggAVAX  sAVAX   BTCb
-        /* 0  USDC    */ [uint16(0.00e4), 0.93e4, 0.00e4, 0.85e4, 0.82e4, 0.00e4, 0.00e4, 0.75e4],
-        /* 1  USDT    */ [uint16(0.93e4), 0.00e4, 0.00e4, 0.85e4, 0.82e4, 0.00e4, 0.00e4, 0.75e4],
+        /* 0  USDC    */ [uint16(0.00e4), 0.00e4, 0.00e4, 0.85e4, 0.82e4, 0.00e4, 0.00e4, 0.75e4],
+        /* 1  USDT    */ [uint16(0.00e4), 0.00e4, 0.00e4, 0.85e4, 0.82e4, 0.00e4, 0.00e4, 0.75e4],
         /* 2  savUSD  */ [uint16(0.90e4), 0.90e4, 0.00e4, 0.85e4, 0.82e4, 0.00e4, 0.00e4, 0.75e4],
         /* 3  WETH    */ [uint16(0.85e4), 0.85e4, 0.00e4, 0.00e4, 0.82e4, 0.00e4, 0.00e4, 0.75e4],
         /* 4  WAVAX   */ [uint16(0.82e4), 0.82e4, 0.00e4, 0.82e4, 0.00e4, 0.00e4, 0.00e4, 0.75e4],
