@@ -61,7 +61,7 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
         cluster.supplyCaps[USDC  ] = 10_000_000;
         cluster.supplyCaps[USDT  ] = 10_000_000;
-        cluster.supplyCaps[savUSD] = 1_000_000;
+        cluster.supplyCaps[savUSD] = 0;
         cluster.supplyCaps[WETH  ] = 3_000;
         cluster.supplyCaps[WAVAX ] = 1_000_000;
         cluster.supplyCaps[ggAVAX] = 250_000;
@@ -120,6 +120,10 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
         /* 6  sAVAX   */ [uint16(0.75e4), 0.75e4, 0.00e4, 0.75e4, 0.75e4, 0.00e4, 0.00e4, 0.75e4],
         /* 7  BTCb    */ [uint16(0.75e4), 0.75e4, 0.00e4, 0.75e4, 0.75e4, 0.00e4, 0.00e4, 0.00e4]
         ];
+
+        for (uint256 i = 0; i < cluster.assets.length; ++i) {
+            cluster.borrowLTVsOverride[2][i] = 0;
+        }
     }
 
     function postOperations() internal view override {
