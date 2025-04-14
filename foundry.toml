@@ -10,5 +10,5 @@ optimizer_runs = 20_000
 
 fs_permissions = [
     { access = "read-write", path = "./" },
-    { access = "read-write", path = "../euler-interfaces" },
+    { access = "read", path = "../euler-interfaces" },
 ]
