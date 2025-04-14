@@ -60,7 +60,7 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
         cluster.supplyCaps[USDC  ] = 10_000_000;
-        cluster.supplyCaps[USDT  ] = 10_000_000;
+        cluster.supplyCaps[USDT  ] = 15_000_000;
         cluster.supplyCaps[savUSD] = 0;
         cluster.supplyCaps[WETH  ] = 3_000;
         cluster.supplyCaps[WAVAX ] = 1_000_000;
@@ -70,7 +70,7 @@ contract Cluster is ManageClusterBase, AddressesAvalanche {
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
         cluster.borrowCaps[USDC  ] = 9_000_000;
-        cluster.borrowCaps[USDT  ] = 9_000_000;
+        cluster.borrowCaps[USDT  ] = 13_500_000;
         cluster.borrowCaps[savUSD] = type(uint256).max;
         cluster.borrowCaps[WETH  ] = 2_550;
         cluster.borrowCaps[WAVAX ] = 850_000;
