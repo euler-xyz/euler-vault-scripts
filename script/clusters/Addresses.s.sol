@@ -22,3 +22,13 @@ abstract contract AddressesAvalanche {
     address internal constant sAVAX = 0x2b2C81e08f1Af8835a78Bb2A90AE924ACE0eA4bE;
     address internal constant BTCb = 0x152b9d0FdC40C096757F570A51E494bd4b943E50;
 }
+
+abstract contract AddressesBSC {
+    address internal constant USD = address(840);
+    address internal constant USDT = 0x55d398326f99059fF775485246999027B3197955;
+    address internal constant USDC = 0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d;
+    address internal constant sUSDe = 0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2;
+    address internal constant USDe = 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34;
+    address internal constant USR = 0x2492D0006411Af6C8bbb1c8afc1B0197350a79e9;
+    address internal constant YUSD = 0xAB3dBcD9B096C3fF76275038bf58eAC10D22C61f;
+}
