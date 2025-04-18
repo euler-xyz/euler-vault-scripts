@@ -13,7 +13,7 @@ contract Cluster is ManageClusterBase, AddressesBSC {
 
         // after the cluster is deployed, do not change the order of the assets in the .assets array. if done, it must be 
         // reflected in other the other arrays the ltvs matrix. IMPORTANT: do not define more than one vault for the same asset
-        cluster.assets = [USDT, USDC, sUSDe, USDe, USR, YUSD];
+        cluster.assets = [USDT, USDC, sUSDe, USDe, USR, YUSD, PT_sUSDE_26JUN2025];
     }
 
     function configureCluster() internal override {
@@ -49,28 +49,31 @@ contract Cluster is ManageClusterBase, AddressesBSC {
         // for pricing, the string should be preceeded by "ExternalVault|" prefix. this is in order to correctly resolve 
         // the asset (vault) in the oracle router. 
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
-        cluster.oracleProviders[USDT ] = "0xed29690a4d7f1b63807957fb71149a8dcfd820a4";
-        cluster.oracleProviders[USDC ] = "0x5ad9c6117ceb1981cfcb89beb6bd29c9157ab5b3";
-        cluster.oracleProviders[sUSDe] = "0x475D65970fBa12874caF8660E1aDbAe5dA8567D2";
-        cluster.oracleProviders[USDe ] = "0xa436df7c3a77d88d1ec9275b5744bdcc187982f2";
-        cluster.oracleProviders[USR  ] = "0xb92b9341be191895e8c68b170ac4528839ffe0b2";
-        cluster.oracleProviders[YUSD ] = "0xe5908cbd7b3bc2648b32ce3dc8dfad4d83afd1b4";
+        cluster.oracleProviders[USDT              ] = "0xed29690a4d7f1b63807957fb71149a8dcfd820a4";
+        cluster.oracleProviders[USDC              ] = "0x5ad9c6117ceb1981cfcb89beb6bd29c9157ab5b3";
+        cluster.oracleProviders[sUSDe             ] = "0x475D65970fBa12874caF8660E1aDbAe5dA8567D2";
+        cluster.oracleProviders[USDe              ] = "0xa436df7c3a77d88d1ec9275b5744bdcc187982f2";
+        cluster.oracleProviders[USR               ] = "0xb92b9341be191895e8c68b170ac4528839ffe0b2";
+        cluster.oracleProviders[YUSD              ] = "0xe5908cbd7b3bc2648b32ce3dc8dfad4d83afd1b4";
+        cluster.oracleProviders[PT_sUSDE_26JUN2025] = "0x5574190340fcce41c5f90312edb3924f5faa9bbd";
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
-        cluster.supplyCaps[USDT ] = 50_000_000;
-        cluster.supplyCaps[USDC ] = 50_000_000;
-        cluster.supplyCaps[sUSDe] = 50_000_000;
-        cluster.supplyCaps[USDe ] = 35_000_000;
-        cluster.supplyCaps[USR  ] = 20_000_000;
-        cluster.supplyCaps[YUSD ] = 2_000_000;
+        cluster.supplyCaps[USDT              ] = 50_000_000;
+        cluster.supplyCaps[USDC              ] = 50_000_000;
+        cluster.supplyCaps[sUSDe             ] = 50_000_000;
+        cluster.supplyCaps[USDe              ] = 35_000_000;
+        cluster.supplyCaps[USR               ] = 20_000_000;
+        cluster.supplyCaps[YUSD              ] = 2_000_000;
+        cluster.supplyCaps[PT_sUSDE_26JUN2025] = 3_000_000;
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
-        cluster.borrowCaps[USDT ] = 45_000_000;
-        cluster.borrowCaps[USDC ] = 45_000_000;
-        cluster.borrowCaps[sUSDe] = type(uint256).max;
-        cluster.borrowCaps[USDe ] = type(uint256).max;
-        cluster.borrowCaps[USR  ] = type(uint256).max;
-        cluster.borrowCaps[YUSD ] = type(uint256).max;
+        cluster.borrowCaps[USDT              ] = 45_000_000;
+        cluster.borrowCaps[USDC              ] = 45_000_000;
+        cluster.borrowCaps[sUSDe             ] = type(uint256).max;
+        cluster.borrowCaps[USDe              ] = type(uint256).max;
+        cluster.borrowCaps[USR               ] = type(uint256).max;
+        cluster.borrowCaps[YUSD              ] = type(uint256).max;
+        cluster.borrowCaps[PT_sUSDE_26JUN2025] = type(uint256).max;
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
@@ -91,14 +94,15 @@ contract Cluster is ManageClusterBase, AddressesBSC {
     
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
-        //                0                1        2        3        4        5
-        //                USDT             USDC     sUSDe    USDe     USR      YUSD
-        /* 0  USDT    */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-        /* 1  USDC    */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-        /* 2  sUSDe   */ [uint16(0.915e4), 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-        /* 3  USDe    */ [uint16(0.925e4), 0.925e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-        /* 4  USR     */ [uint16(0.900e4), 0.900e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-        /* 5  YUSD    */ [uint16(0.800e4), 0.800e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]
+        //                           0                1        2        3        4        5        6
+        //                           USDT             USDC     sUSDe    USDe     USR      YUSD     PT_sUSDE_26JUN2025
+        /* 0  USDT               */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+        /* 1  USDC               */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+        /* 2  sUSDe              */ [uint16(0.915e4), 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+        /* 3  USDe               */ [uint16(0.925e4), 0.925e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+        /* 4  USR                */ [uint16(0.900e4), 0.900e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+        /* 5  YUSD               */ [uint16(0.800e4), 0.800e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+        /* 6  PT_sUSDE_26JUN2025 */ [uint16(0.900e4), 0.900e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]
         ];
     }
 

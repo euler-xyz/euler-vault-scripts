@@ -31,4 +31,5 @@ abstract contract AddressesBSC {
     address internal constant USDe = 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34;
     address internal constant USR = 0x2492D0006411Af6C8bbb1c8afc1B0197350a79e9;
     address internal constant YUSD = 0xAB3dBcD9B096C3fF76275038bf58eAC10D22C61f;
+    address internal constant PT_sUSDE_26JUN2025 = 0xDD809435ba6c9d6903730f923038801781cA66ce;
 }
