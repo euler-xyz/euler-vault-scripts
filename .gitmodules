@@ -4,3 +4,4 @@
 [submodule "lib/evk-periphery"]
 	path = lib/evk-periphery
 	url = https://github.com/euler-xyz/evk-periphery
+	branch = euler-earn-legacy
