@@ -130,6 +130,48 @@ Use the Safe UI Transaction Builder tool to create the transaction. Load the `<p
 
 5. Execute the transaction in the Safe UI.
 
+# Self-Collateralization Vault Setup
+
+The `SelfCollateralization.s.sol` script deploys a specialized vault structure consisting of two vaults for the same asset:
+
+1. **Escrowed Collateral Vault**: A standard vault that holds the asset as collateral
+2. **Borrowable Vault**: A vault that accepts the escrowed collateral vault as collateral, allowing users to borrow the same asset
+
+This setup creates the perfect vault structure for EulerSwap, enabling self-collateralized positions where the liquidity provider (typically the DAO behind the token) can borrow an asset against their own escrowed position of the same asset.
+
+## Use Case: EulerSwap Integration
+
+This structure is particularly useful for creating liquidity pools where:
+
+- A DAO can deposit assets (e.g., EUL tokens) into the escrow vault as collateral
+- The borrowable vault can then be used to borrow the same asset (EUL) against the escrowed position
+- This enables Just-In-Time (JIT) liquidity provision for trading pairs (e.g., WETH-EUL)
+- The DAO can borrow EUL as needed from the community to facilitate swaps
+- Interest rate models can be configured as the DAO sees it fit, with APY enough to attract token liquidity into the borrowable vault
+
+## Key Benefits
+
+- **Cost-effective liquidity provision**: DAOs can provide deep liquidity for their tokens without requiring large capital outlays
+- **Token holder incentives**: The interest rate model on the borrowable vault incentivizes token holders to deposit their tokens, creating a natural yield mechanism
+- **Self-collateralized efficiency**: The DAO can borrow against their own escrowed position, enabling flexible liquidity management
+- **Community-driven liquidity**: Token holders become liquidity providers through the borrowable vault, creating a sustainable ecosystem
+
+## Usage
+
+To use the SelfCollateralization script:
+
+1. Edit the `SelfCollateralization.s.sol` file and modify the `TOKEN` and `IRM` addresses to your desired asset and interest rate model
+2. Run the script using the standard execution command:
+
+```bash
+./script/ExecuteSolidityScript.sh ./script/self-collateralization/SelfCollateralization.s.sol [options]
+```
+
+i.e.
+```bash
+./script/ExecuteSolidityScript.sh ./script/self-collateralization/SelfCollateralization.s.sol --account DEPLOYER --rpc-url 1
+```
+
 # Safety
 
 This software is experimental and is provided "as is" and "as available".
