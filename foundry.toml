@@ -25,3 +25,6 @@ wrap_comments = true
 ignore = [
     "script/clusters/*"
 ]
+
+[profile.default.lint]
+severity = ["high", "med"]

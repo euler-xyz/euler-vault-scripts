@@ -38,7 +38,9 @@ curl -L https://foundry.paradigm.xyz | bash
 git clone https://github.com/euler-xyz/euler-vault-scripts.git && cd euler-vault-scripts
 ```
 
-3. Prepare the `.env` file by. Use `.env.example` as an example. Define the RPC URLs for all the chain IDs you need.
+3. Prepare the `.env` file. Use `.env.example` as an example: 
+- define the RPC URLs for all the chain IDs you need
+- if you're planning to use Safe, define `SAFE_API_KEY` by signing up [here](https://developer.safe.global/)
 
 4. Ensure that you have up to date dependencies installed:
 
@@ -171,6 +173,10 @@ i.e.
 ```bash
 ./script/ExecuteSolidityScript.sh ./script/self-collateralization/SelfCollateralization.s.sol --account DEPLOYER --rpc-url 1
 ```
+
+# Troubleshooting
+
+If you are already using `euler-vault-scripts` and your scripts began failing due to changes in the Safe API, you likely need to update your local copy of the repository. If you are working from your own fork, make sure to pull the latest changes from the upstream `euler-xyz/euler-vault-scripts` repository. This will ensure you have the most recent fixes and compatibility updates for the Safe API. After updating, reinstall dependencies and recompile the contracts to ensure everything works as expected. Note that you may need to add `SAFE_API_KEY` to your `.env` file as explained in the [Prerequisites](#prerequisites) section above.
 
 # Safety
 
