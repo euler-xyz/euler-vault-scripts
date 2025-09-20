@@ -22,8 +22,10 @@ handle_deployment_files() {
     mkdir -p "$deployment_dir/broadcast" "$deployment_dir/output"
 
     # Handle broadcast file
-    counter=$(script/utils/getFileNameCounter.sh "$deployment_dir/broadcast/${jsonName}.json")
-    cp "$broadcast_dir/run-latest.json" "$deployment_dir/broadcast/${jsonName}_${counter}.json"
+    if [ -e "$broadcast_dir/run-latest.json" ]; then
+        counter=$(script/utils/getFileNameCounter.sh "$deployment_dir/broadcast/${jsonName}.json")
+        cp "$broadcast_dir/run-latest.json" "$deployment_dir/broadcast/${jsonName}_${counter}.json"
+    fi
 
     # Handle JSON files
     for json_file in script/*.json; do
