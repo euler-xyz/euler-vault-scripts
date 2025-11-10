@@ -15,9 +15,7 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
         // reflected in other the other arrays the ltvs matrix. IMPORTANT: do not define more than one vault for the same asset
         cluster.assets = [
             WETH,
-            USDC,
-            USDT,
-            sUSDS
+            USDC
         ];
     }
 
@@ -55,22 +53,16 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
         // for pricing, the string should be preceeded by "ExternalVault|" prefix. this is in order to correctly resolve 
         // the asset (vault) in the oracle router. 
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
-        cluster.oracleProviders[WETH ] = "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D";
-        cluster.oracleProviders[USDC ] = "0x6213f24332D35519039f2afa7e3BffE105a37d3F";
-        cluster.oracleProviders[USDT ] = "0x587CABe0521f5065b561A6e68c25f338eD037FF9";
-        cluster.oracleProviders[sUSDS] = "ExternalVault|0xD0dAb9eDb2b1909802B03090eFBF14743E7Ff967";
+        cluster.oracleProviders[WETH ] = "0xafd0bc3aa58414b05f689ed3bc9a7c94eb885510";
+        cluster.oracleProviders[USDC ] = "0x78467bc797e94bab578c6d6d598ed3b8a3f649b6";
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
         cluster.supplyCaps[WETH ] = 10_000;
         cluster.supplyCaps[USDC ] = 10_000_000;
-        cluster.supplyCaps[USDT ] = 10_000_000;
-        cluster.supplyCaps[sUSDS] = 10_000_000;
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
         cluster.borrowCaps[WETH ] = 9_000;
         cluster.borrowCaps[USDC ] = 9_000_000;
-        cluster.borrowCaps[USDT ] = 9_000_000;
-        cluster.borrowCaps[sUSDS] = type(uint256).max; // no cap defined
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
@@ -84,7 +76,6 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
 
             cluster.kinkIRMParams[WETH ] = irmETH;
             cluster.kinkIRMParams[USDC ] = irmUSD;
-            cluster.kinkIRMParams[USDT ] = irmUSD;
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
@@ -95,12 +86,10 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
     
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
-        //                0               1       2       3
-        //                WETH            USDC    USDT    sUSDS
-        /* 0  WETH    */ [uint16(0.00e4), 0.85e4, 0.85e4, 0.00e4],
-        /* 1  USDC    */ [uint16(0.87e4), 0.00e4, 0.95e4, 0.00e4],
-        /* 2  USDT    */ [uint16(0.87e4), 0.95e4, 0.00e4, 0.00e4],
-        /* 3  sUSDS   */ [uint16(0.87e4), 0.95e4, 0.95e4, 0.00e4]
+        //                0               1       
+        //                WETH            USDC     
+        /* 0  WETH    */ [uint16(0.00e4), 0.85e4],
+        /* 1  USDC    */ [uint16(0.87e4), 0.00e4]
         ];
     }
 
