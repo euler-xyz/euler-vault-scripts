@@ -42,6 +42,8 @@ git clone https://github.com/euler-xyz/euler-vault-scripts.git && cd euler-vault
 - define the RPC URLs for all the chain IDs you need
 - if you're planning to use Safe, define `SAFE_API_KEY` by signing up [here](https://developer.safe.global/)
 
+> **Note**: Environment variables defined in `.env` take precedence over command line arguments.
+
 4. Ensure that you have up to date dependencies installed:
 
 ```bash
@@ -95,8 +97,6 @@ Always try to use the `--dry-run` option first to simulate the transactions and 
 
 In case of a governor contract installed, this section assumes that the cluster is governed by the `GovernorAccessControlEmergency` contract with a Safe multisig having an appropriate emergency role granted to it.
 
-> **IMPORTANT**: Environment variables defined in the `.env` file take precedence over the command line arguments!
-
 ## Steps
 
 1. Ensure that you performed all the steps from the Prerequisites section.
@@ -115,7 +115,7 @@ Options:
 - `--emergency-operations` should be used if you intend disable all the operations of the `VAULT_ADDRESS`
 
 ```bash
-./script/ExecuteSolidityScript.sh PATH_TO_CLUSTER_SPECIFIC_SCRIPT --rpc-url RPC_URL --batch-via-safe --safe-address SAFE_ADDRESS --vault-address VAULT_ADDRESS [--emergency-ltv-collateral] [--emergency-ltv-borrowing] [--emergency-caps] [--emergency-caps]
+./script/ExecuteSolidityScript.sh PATH_TO_CLUSTER_SPECIFIC_SCRIPT --rpc-url RPC_URL --batch-via-safe --safe-address SAFE_ADDRESS --vault-address VAULT_ADDRESS [--emergency-ltv-collateral] [--emergency-ltv-borrowing] [--emergency-caps] [--emergency-operations]
 ```
 
 Example command:
